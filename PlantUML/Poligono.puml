@@ -1,0 +1,7 @@
+@startuml Poligono
+class Poligono {
+    + Poligono(rotulo:char, paiRef:Objeto)
+    + <<override>> ToString() : string
+}
+ObjetoGeometria <|-- Poligono
+@enduml

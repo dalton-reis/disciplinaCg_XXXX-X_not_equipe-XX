@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="208px" preserveAspectRatio="none" style="width:280px;height:208px;background:#FFFFFF;" version="1.1" viewBox="0 0 280 208" width="280px" zoomAndPan="magnify"><defs/><g><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="252" x="5" y="19">Dot Executable: /opt/local/bin/dot</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="134" x="5" y="35.4883">File does not exist</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="268" x="5" y="51.9766">Cannot find Graphviz. You should try</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="5" x="5" y="68.4648"> </text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="74" x="5" y="84.9531">@startuml</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="52" x="5" y="101.4414">testdot</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="66" x="5" y="117.9297">@enduml</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="5" x="5" y="134.418"> </text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="15" x="10" y="150.9063">or</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="5" x="5" y="167.3945"> </text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="220" x="5" y="183.8828">java -jar plantuml.jar -testdot</text><text fill="#33FF02" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="5" x="5" y="200.3711"> </text><!--MD5=[0c1b5082f11732e5b93c5ce1dd26e90f]
+@startuml include
+!include ./Mundo.puml
+!include ./Objeto.puml
+!include ./ObjetoGeometria.puml
+!include ./Poligono.puml
+!include ./Retangulo.puml
+!include ./Utilitario.puml
+!include ./CG_Privado/Privado_BBox.puml
+!include ./CG_Privado/Privado_Circulo.puml
+!include ./CG_Privado/Privado_Matematica.puml
+!include ./CG_Privado/Privado_SegReta.puml
+@enduml
+
+@startuml include
+class Mundo {
+    + {static} GetInstance(width:int, height:int) : Mundo
+    mouseX : int
+    mouseY : int
+}
+class Program {
+    {static} Main(args:string[]) : void
+}
+GameWindow <|- - Mundo
+abstract class Objeto {
+    + PrimitivaTamanho : float <<get>> <<set>>
+    + TrocaEixoRotacao(eixo:char) : void
+    + Objeto(rotulo:char, paiRef:Objeto)
+    + Desenhar() : void
+    + FilhoAdicionar(filho:Objeto) : void
+    + FilhoRemover(filho:Objeto) : void
+    + GrafocenaBusca(mousePto:Ponto4D) : Objeto
+    + GrafocenaRemover() : void
+    + GrafocenaToString() : void
+    + GrafocenaRemoverPoligonoVazio() : bool
+    + PrimitivaTipoTroca() : void
+    + AtribuirIdentidade() : void
+    + TranslacaoXYZ(tx:double, ty:double, tz:double) : void
+    + EscalaXYZ(Sx:double, Sy:double, Sz:double) : void
+    + EscalaXYZBBox(Sx:double, Sy:double, Sz:double) : void
+    + RotacaoEixo(angulo:double) : void
+    + Rotacao(angulo:double) : void
+    + RotacaoZBBox(angulo:double) : void
+}
+Objeto - -> "PaiRef" Objeto
+Objeto - -> "ObjetoCor" Cor
+Objeto - -> "PrimitivaTipo" PrimitiveType
+Objeto - -> "BBox" BBox
+Objeto - -> "Matriz" Transformacao4D
+abstract class ObjetoGeometria {
+    + ObjetoGeometria(rotulo:string, paiRef:Objeto)
+    + PontosAdicionar(pto:Ponto4D) : void
+    + PontosRemoverUltimo() : void
+    + PontosUltimo() : Ponto4D
+    + PontosAlterar(pto:Ponto4D, posicao:int) : void
+    + <<override>> ToString() : string
+}
+Objeto <|- - ObjetoGeometria
+class Poligono {
+    + Poligono(rotulo:char, paiRef:Objeto)
+    + <<override>> ToString() : string
+}
+ObjetoGeometria <|- - Poligono
+class Retangulo {
+    + Retangulo(rotulo:string, paiRef:Objeto, ptoInfEsq:Ponto4D, ptoSupDir:Ponto4D)
+    + <<override>> ToString() : string
+}
+ObjetoGeometria <|- - Retangulo
+abstract class Utilitario {
+    + {static} charProximo(atual:char) : char
+    + {static} AjudaTeclado() : void
+}
+abstract class Privado_BBox {
+    + {static} Dentro(bBox:BBox, pto:Ponto4D) : bool
+}
+class Privado_Circulo {
+    + Privado_Circulo(rotulo:string, paiRef:Objeto, ptoCentro:Ponto4D, raio:double)
+    + <<override>> ToString() : string
+}
+ObjetoGeometria <|- - Privado_Circulo
+abstract class Privado_Matematica {
+    + {static} DistanciaEuclidiana(pto1:Ponto4D, pto2:Ponto4D) : double
+    + {static} DistanciaEuclidianaSemRaiz(pto1:Ponto4D, pto2:Ponto4D) : double
+    + {static} ScanLineInterseccao(yi:double, y1:double, y2:double) : double
+    + {static} ScanLineCalculaXi(x1:double, x2:double, ti:double) : double
+    + {static} ScanLine(ptoClique:Ponto4D, ptoIni:Ponto4D, ptoFim:Ponto4D) : bool
+}
+class Privado_SegReta {
+    + Privado_SegReta(rotulo:string, paiRef:Objeto, ptoIni:Ponto4D, ptoFim:Ponto4D)
+    + <<override>> ToString() : string
+}
+ObjetoGeometria <|- - Privado_SegReta
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 14:01:30 BRT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: BR
+--></g></svg>

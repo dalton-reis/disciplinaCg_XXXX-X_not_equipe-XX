@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>CG_Biblioteca</RootNamespace>
+<!-- FIXME: descomentar, gerar documentação, arrumar problemas gerados, ver para que serve (usar) esta documentação.
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\documentação.XML</DocumentationFile>
+-->
+  </PropertyGroup>
+
+  <ItemGroup>
+<!-- MacOS
+  <PackageReference Include="OpenTK" Version="3.2.0"/>
+-->    
+<!-- Windows
+  <PackageReference Include="OpenTK.NetCore" Version="*" />
+-->
+  <PackageReference Include="OpenTK.NetCore" Version="*" />
+  </ItemGroup>
+
+</Project>

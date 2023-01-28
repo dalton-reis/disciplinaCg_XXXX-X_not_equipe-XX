@@ -1,0 +1,27 @@
+@startuml Objeto
+abstract class Objeto {
+    + PrimitivaTamanho : float <<get>> <<set>>
+    + TrocaEixoRotacao(eixo:char) : void
+    + Objeto(rotulo:char, paiRef:Objeto)
+    + Desenhar() : void
+    + FilhoAdicionar(filho:Objeto) : void
+    + FilhoRemover(filho:Objeto) : void
+    + GrafocenaBusca(mousePto:Ponto4D) : Objeto
+    + GrafocenaRemover() : void
+    + GrafocenaToString() : void
+    + GrafocenaRemoverPoligonoVazio() : bool
+    + PrimitivaTipoTroca() : void
+    + AtribuirIdentidade() : void
+    + TranslacaoXYZ(tx:double, ty:double, tz:double) : void
+    + EscalaXYZ(Sx:double, Sy:double, Sz:double) : void
+    + EscalaXYZBBox(Sx:double, Sy:double, Sz:double) : void
+    + RotacaoEixo(angulo:double) : void
+    + Rotacao(angulo:double) : void
+    + RotacaoZBBox(angulo:double) : void
+}
+Objeto --> "PaiRef" Objeto
+Objeto --> "ObjetoCor" Cor
+Objeto --> "PrimitivaTipo" PrimitiveType
+Objeto --> "BBox" BBox
+Objeto --> "Matriz" Transformacao4D
+@enduml

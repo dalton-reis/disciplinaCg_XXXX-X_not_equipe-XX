@@ -1,0 +1,12 @@
+@startuml include
+!include ./Mundo.puml
+!include ./Objeto.puml
+!include ./ObjetoGeometria.puml
+!include ./Poligono.puml
+!include ./Retangulo.puml
+!include ./Utilitario.puml
+!include ./CG_Privado/Privado_BBox.puml
+!include ./CG_Privado/Privado_Circulo.puml
+!include ./CG_Privado/Privado_Matematica.puml
+!include ./CG_Privado/Privado_SegReta.puml
+@enduml

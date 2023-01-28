@@ -1,0 +1,6 @@
+@startuml Utilitario
+abstract class Utilitario {
+    + {static} charProximo(atual:char) : char
+    + {static} AjudaTeclado() : void
+}
+@enduml
