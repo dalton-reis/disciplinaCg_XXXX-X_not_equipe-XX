@@ -19,7 +19,7 @@ O GitHub de cada equipe vai ser criado pelo professor após as definições das 
 
 Todos os trabalhos serão desenvolvidos em equipe (**máximo três alunos**) e devem ser postados no GitHub até a data definida no [cronograma](cronograma.md "cronograma").  
 
-## [Matriz curricular BCC](matriz_BCC.pdf "Matriz curricular BCC")  
+## [Matriz curricular BCC](<https://github.com/dalton-reis/dalton-reis/blob/main/_._/matriz_BCC.pdf> "Matriz curricular BCC")  
 
 ## [Cronograma](cronograma.md "cronograma")  
 
