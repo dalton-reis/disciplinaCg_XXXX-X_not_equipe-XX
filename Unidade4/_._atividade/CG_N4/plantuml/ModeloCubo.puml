@@ -1,5 +1,0 @@
-@startuml
-class ModeloCubo {
-    + Geometria() : void
-}
-@enduml
